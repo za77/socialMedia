@@ -1,0 +1,393 @@
+<style>
+#cke_44
+{
+    display: none;
+}
+.loader {
+  margin-top: 20%;
+  position: absolute;
+  z-index: 1;
+  margin-left: 45%;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  display: none;
+
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+#mapCanvas {
+    width: 450px;
+    height: 400px;
+}
+
+#start{
+    width:150px;
+    height:45px;
+}
+</style>
+
+<div id="page_content" >
+    <div id="page_content_inner" ng-controller="previewController">
+    <div class="loader"></div>
+    <h3 style="margin-top:20px;"  class="heading_b uk-margin-bottom uk-margin-large-top">Welcome {{names.firstName|uppercase}} {{names.lastName|uppercase}}</h3>
+
+        <div class="uk-width-medium-1-1 row-first">
+                    
+               
+                         
+                            
+                    <div class="uk-width-medium-1-1">
+                    <div class="md-card">
+                        <div class="md-card-content" >
+                            <div class="uk-overflow-container">
+                                <div class="uk-grid">
+                                    
+                                    <div class="uk-width-1-2 uk-row-first">
+                                    
+                                    <div class="uk-grid" data-uk-grid-margin>
+                                    <div class="uk-width-medium-4-10">
+                                        <label>Select where you would like to list the advertisement<span style="color:red;">*</span></label>                                        
+                                    </div>
+                                    <div class="uk-width-medium-6-10">
+                                    <span class="icheck-inline ">
+                                        <input type="radio" class="visible" value="1"  name="radio_demo_inline1" id="radio_demo_inline_1"  ng-model="classified"/>
+                                        <label for="radio_demo_inline_1" class="inline-label">Online classified listing</label>
+                                    </span>
+                                    <span class="icheck-inline ">
+                                        <input type="radio" class="visible" value="2"  name="radio_demo_inline_2" id="radio_demo_inline_2" ng-model="inapp" />
+                                        <label for="radio_demo_inline_2" class="inline-label">Allow In-app purchase</label>
+                                    </span>
+                                    </div>
+                                </div>
+                                
+                                <div class="uk-grid" data-uk-grid-margin>   
+                                    <div class="uk-width-medium-1-1">
+                                    	<div class="md-input-wrapper md-input-filled">
+                                        <label>Service Name<span style="color:red;">*</span></label>
+                                        <input type="text" ng-model="eserviceName" class="md-input label-fixed edit" />
+                                        </div>                                      	
+                                    </div>
+                                </div>
+                                
+                                <div class="uk-grid" data-uk-grid-margin>
+                                    <div class="uk-width-medium-1-1">
+                                    	<div class="md-input-wrapper md-input-filled">
+                                        <label>Short Description<span style="color:red;">*</span></label>
+                                        <textarea maxlength="30" ng-model="edescription" class="md-input label-fixed edit" id="desc"></textarea>  
+                                          <div id="textarea_feedback"></div>                                   		</div>
+                                    </div>
+                                </div>
+
+                                
+                                
+                                <div class="uk-grid" data-uk-grid-margin>
+                                    <div class="uk-width-medium-4-10">
+                                        <label>Service Category<span style="color:red;">*</span></label>                                     
+                                    </div>
+                                    
+                                    <div class="uk-width-medium-6-10">
+                                    <span ng-repeat="adCats in adCat" class=" uk-width-1-1">
+                                        <input type="radio" value="{{adCats.categoryId}}"  class="category" name="radio_demo_inline_1{{adCats.categoryId}}" id="radio_demo_inline_1{{adCats.categoryId}}"  />
+                                        <label for="radio_demo_inline_1{{adCats.categoryId}}" class="inline-label">{{adCats.CategoryName}}</label>
+                                    </span>
+
+                                 
+                                    
+                                    </div>
+                                </div>
+                                    <!-- <div class="uk-width-medium-6-10">
+                                    <span class="icheck-inline uk-width-1-2">
+                                        <input type="radio" value="1" ng-model="medical" class="category" name="radio_demo_inline" id="radio_demo_inline_3"  />
+                                        <label for="radio_demo_inline_3" class="inline-label">Medical Devices</label>
+                                    </span>
+                                    <span class="icheck-inline ">
+                                        <input type="radio" value="2" class="category" name="radio_demo_inline" id="radio_demo_inline_4" ng-model="fitness" />
+                                        <label for="radio_demo_inline_4" class="inline-label">Fitness Package</label>
+                                    </span>
+                                    <span class="icheck-inline uk-width-1-2">
+                                        <input type="radio" value="3" class="category" name="radio_demo_inline" id="radio_demo_inline_5" ng-model="disease"  />
+                                        <label for="radio_demo_inline_5" class="inline-label">Disease Management</label>
+                                    </span>
+                                    <span class="icheck-inline ">
+                                        <input type="radio" value="4" class="category" name="radio_demo_inline" id="radio_demo_inline_6" ng-model="consumables" />
+                                        <label for="radio_demo_inline_6" class="inline-label">Consumables</label>
+                                    </span>
+                                    
+                                    </div> -->
+
+
+                                
+                                
+                                <div class="uk-grid" data-uk-grid-margin>
+                                    <div class="uk-width-medium-4-10">
+                                        <label>Offers<span style="color:red;">*</span></label>   
+                                    </div>
+                                    <div class="uk-width-medium-6-10">
+                                        <div class="uk-grid" data-uk-grid-margin>
+                                <div class="uk-width-large-1-2 uk-width-1-1">
+                                    <div class="md-input-wrapper md-input-filled">
+                                        
+                                        <label for="uk_dp_start">Start Date<span style="color:red;">*</span></label>
+                                        <input class="md-input label-fixed edit" id="uk_dp_start" type="text" ng-model="esdate"  >
+
+                                         
+                                    </div>
+                                </div>
+                                <div class="uk-width-large-1-2 uk-width-medium-1-1">
+                                    <div class="md-input-wrapper md-input-filled">
+                                        <label for="uk_dp_end">End Date<span style="color:red;">*</span></label>
+                <input class="md-input label-fixed edit"  type="text" id="uk_dp_end" ng-model="eedate" >
+                                    </div>
+                                </div>
+                            </div>
+                                    </div>
+                                    
+                                </div>
+                                
+                                
+                                <div class="uk-grid" data-uk-grid-margin>
+                                    <div class="uk-width-medium-4-10">
+                                        <label>Price<span style="color:red;">*</span></label>    
+                                    </div>
+                                    <div class="uk-width-medium-6-10">
+                                        <div class="uk-grid" data-uk-grid-margin>
+                                <div class="uk-width-large-1-2 uk-width-1-1">
+                                    <div class="md-input-wrapper md-input-filled">
+                                        <label>Enter Price<span style="color:red;">*</span></label>
+                                        <input class="md-input label-fixed edit" onkeypress='return event.charCode >= 48 && event.charCode <= 57' ng-model="eprice" type="text">
+                                    </div>
+                                </div>
+                                <div class="uk-width-large-1-2">
+                                    <div class="uk-input-group  uk-width-large-1-1">
+                                        <select ng-model="ecountry" class="md-input edit country">
+                                            <option>Select Country<span style="color:red;">*</span></option>
+                                            <option value="AED">AED</option>
+                                            <option value="USD">USD</option>
+                                            <option value="Pounds">Pounds</option>
+                                            <option value="YEN">YEN</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                                    </div>
+                                    
+                                </div>
+                              
+
+                                <div class="uk-grid" data-uk-grid-margin>
+                                   
+                                    <div class="uk-width-medium-10-10">
+                                        <div class="uk-grid" data-uk-grid-margin>
+                                <div class="uk-width-large-1-2 uk-width-1-1">
+                                    <div class="md-input-wrapper md-input-filled">
+                                        
+                                             <label>Contact Person<span style="color:red;">*</span></label>
+                                        <input type="text" maxlength="15" ng-model="eperson" class="md-input valu">
+
+                                         
+                                    </div>
+                                </div>
+                                <div class="uk-width-large-1-2 uk-width-medium-1-1">
+                                    <div class="md-input-wrapper md-input-filled">
+                                <label>Contact Mobile<span style="color:red;">*</span></label>
+                                        <input type="text" maxlength="13" onkeypress='return event.charCode >= 48 && event.charCode <= 57' ng-model="econtact" class="md-input valu">
+                                    </div>
+                                </div>
+                            </div>
+                                    </div>
+                                    
+                                </div>
+                               <div class="uk-grid" data-uk-grid-margin>   
+                                    <div class="uk-width-medium-1-1">
+                                        <label>Location<span style="color:red;">*</span></label>
+                                        <input type="text" ng-model="eaddress" id="eaddress"  class="md-input md-input-filled valu" />
+                                        <input type="hidden" id="lat"  ng-model="lat">
+                                        <input type="hidden" id="lng"  ng-model="lng">
+                                        <div class="uk-width-medium-1-1" id="mapCanvas"></div>
+
+                                    </div>
+                                </div>
+
+
+                                <input type="hidden" ng-modle="adsid"/>
+                                <div class="uk-grid uk-margin-top" data-uk-grid-margin>
+                                    <div class="uk-width-medium-4-10">
+                                         <button class="md-btn md-btn-success" ng-click="update()">update</button>
+                                    </div>
+                                    <div class="uk-width-medium-6-10 ">
+                                                                  
+                                    </div>
+                                </div>
+                                
+                                
+                                
+                                </div>
+                                    
+                                    <div class="uk-width-1-2">
+                             
+                                    <label class="uk-margin-small-bottom">
+                                                    Upload image
+                                                </label>
+                                                <input type="file" id="input-file-a" class="dropify" 
+                                                image-model="myFile" type="file" ng-model="image" onchange="angular.element(this).scope().fileUp()"/>
+                                                
+                                                <img class="editimage" width="50">
+                                  
+                                            
+                                            <div class="uk-margin-bottom"></div>
+                                            <label class="uk-margin-small-bottom">
+                                                Advertisement Content
+                                            </label>
+                        <textarea id="wysiwyg_tinymce"   cols="30" rows="20">  </textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                                
+                        </div>
+                    </div>
+                    
+        
+                </div>
+<script type="text/javascript">
+
+
+var uploadField = document.getElementById("input-file-a");
+uploadField.onchange = function() {
+    if(this.files[0].size > 1740800){
+       UIkit.modal.alert('File is too large');
+       this.value = "";
+    };
+};
+
+
+
+
+
+
+
+/*
+    var geocoder = new google.maps.Geocoder();
+
+function geocodePosition(pos) {
+
+          geocoder.geocode({
+            latLng: pos
+          }, function(responses) {
+            if (responses && responses.length > 0) {
+               alert(responses[0].formatted_address);
+              updateMarkerAddress(responses[0].formatted_address);
+            } else 
+            {
+                updateMarkerAddress('');
+              
+            }
+          });
+        }
+
+        
+
+       
+
+        function updateMarkerPosition(latLng) {
+         
+        }
+
+        function updateMarkerAddress(str) {
+            $("#eaddress").val(str);
+          
+        }
+        var placeSearch, autocomplete;
+
+        function initialize() 
+        {
+          var lat = $("#lat").val();
+          var lng = $("#lng").val();
+          var latLng = new google.maps.LatLng(lat, lng);
+          var map = new google.maps.Map(document.getElementById('mapCanvas'), {
+            zoom: 8,
+            center: latLng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          });
+
+          var marker = new google.maps.Marker({
+            position: latLng,
+          
+            map: map,
+            draggable: true
+          });
+          
+          // Update current position info.
+          updateMarkerPosition(latLng);
+          geocodePosition(latLng);
+          
+          // Add dragging event listeners.
+          google.maps.event.addListener(marker, 'dragstart', function() {
+            
+          });
+              
+          google.maps.event.addListener(marker, 'drag', function() {
+            
+            updateMarkerPosition(marker.getPosition());
+          });
+          
+          google.maps.event.addListener(marker, 'dragend', function(e) {
+            $('#lat').val(e.latLng.lat());
+           $('#lng').val(e.latLng.lng());
+            geocodePosition(marker.getPosition());
+
+          });
+          
+          google.maps.event.addListener(map, 'click', function(e) {
+            updateMarkerPosition(e.latLng);
+            geocodePosition(marker.getPosition());
+            marker.setPosition(e.latLng);
+          });
+
+        }
+
+        
+        google.maps.event.addDomListener(window, 'load', initialize);
+        initialize();
+*/
+
+
+</script>
+
+ 
+      
+  
+     <script src="https://s3.eu-central-1.amazonaws.com/s3-aseema-web/asset/assets/js/common.min.js"></script>
+     <!-- uikit functions -->
+      <script src="https://s3.eu-central-1.amazonaws.com/s3-aseema-web/asset/assets/js/uikit_custom.min.js"></script> 
+     <!-- altair common functions/helpers --> 
+     <script src="https://s3.eu-central-1.amazonaws.com/s3-aseema-web/asset/assets/js/altair_admin_common.min.js"></script> <!-- page specific plugins --> <!-- page specific plugins --> <!-- ckeditor --> 
+     <script src="https://s3.eu-central-1.amazonaws.com/s3-aseema-web/asset/bower_components/ckeditor/ckeditor.js"></script> 
+     <script src="https://s3.eu-central-1.amazonaws.com/s3-aseema-web/asset/bower_components/ckeditor/adapters/jquery.js">
+     </script> <!-- wysiwyg editors functions --> 
+     <script src="https://s3.eu-central-1.amazonaws.com/s3-aseema-web/asset/bower_components/tinymce/tinymce.js"></script> 
+     <script src="https://s3.eu-central-1.amazonaws.com/s3-aseema-web/asset/assets/js/pages/forms_wysiwyg.js"></script>
+                            
+                            
+ 
+
+    
+
+
+    
+    

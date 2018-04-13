@@ -1,0 +1,558 @@
+<style>
+#cke_44
+{
+    display: none;
+}
+.loader {
+    margin-top: 20%;
+    position: absolute;
+    z-index: 1;
+    margin-left: 45%;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    display: none;
+
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+#mapCanvas {
+    width: 450px;
+    height: 400px;
+}
+
+#start{
+    width:150px;
+    height:45px;
+}
+</style>
+
+<div id="page_content" >
+    <div id="page_content_inner">
+
+        <h3 style="margin-top:20px;"  ng-controller="sellerController" class="heading_b uk-margin-bottom">Create new Ads {{names.firstName|uppercase}} {{names.lastName|uppercase}}</h3>
+        <div class="loader"></div>
+
+        <div class="uk-width-medium-1-1 row-first">
+
+            <div class="md-card">
+                <div class="md-card-content">
+                    <div class="uk-tab-center">
+                        <ul class="uk-tab" data-uk-tab="{connect:'#tabs_5'}">
+                            <li class="uk-active" aria-expanded="true"><a href="#">Add New Service</a></li>
+<!-- <li aria-expanded="true"><a href="#">Approved Services</a></li>
+    <li aria-expanded="true"><a href="#">Pending / Rejected</a></li> -->
+</ul>
+</div>
+<ul id="tabs_5" class="uk-switcher uk-margin">
+    <li aria-hidden="false" class="uk-active">
+        <div class="uk-width-medium-1-1">
+            <div class="md-card">
+                <div class="md-card-content" ng-controller="addadvController">
+                    <div class="uk-overflow-container">
+                        <div class="uk-grid">
+
+                            <div class="uk-width-1-2 uk-row-first">
+
+                                <div class="uk-grid" data-uk-grid-margin>
+                                    <div class="uk-width-medium-4-10">
+                                        <label>Select where you would like to list the advertisement
+                                            <span style="color:red;">*</span></label>                                        
+                                        </div>
+                                        <div class="uk-width-medium-6-10">
+                                            <span class="icheck-inline ">
+                                                <input type="radio" class="visible" value="1" name="radio_demo_inline1" id="radio_demo_inline_1"  />
+                                                <label for="radio_demo_inline_1" class="inline-label">Online classified listing</label>
+                                            </span>
+                                            <span class="icheck-inline ">
+                                                <input type="radio" class="visible " value="2" name="radio_demo_inline1" id="radio_demo_inline_2"  />
+                                                <label for="radio_demo_inline_2" class="inline-label">Allow In-app purchase</label>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="uk-grid" data-uk-grid-margin>   
+                                        <div class="uk-width-medium-1-1">
+                                            <label>Service Name<span style="color:red;">*</span></label>
+                                            <input type="text" ng-model="serviceName" class="md-input valu" />                                      
+                                        </div>
+                                    </div>
+
+                                    <div class="uk-grid" data-uk-grid-margin>
+                                        <div class="uk-width-medium-1-1">
+                                            <label>Short Description <span style="color:red;">*</span></label>
+                                    <textarea maxlength="30" id="desc" ng-model="description" class="md-input valu"></textarea>
+                                             <div id="textarea_feedback"></div>                                  
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div class="uk-grid" data-uk-grid-margin>
+                                        <div class="uk-width-medium-4-10">
+                                            <label>Service Category<span style="color:red;">*</span></label>                                     
+                                        </div>
+                                        <div class="uk-width-medium-6-10">
+                                            <span ng-repeat="adCats in adCat" class=" uk-width-1-1">
+                                                <input type="radio" value="{{adCats.categoryId}}"  class="category" name="radio_demo_inline" id="radio_demo_inline_{{adCats.categoryId}}1"  />
+                                                <label for="radio_demo_inline_{{adCats.categoryId}}1" class="inline-label">{{adCats.CategoryName}}</label>
+                                            </span>
+
+
+
+                                        </div>
+                                    </div>
+
+                                    <div class="uk-grid" data-uk-grid-margin>
+                                        <div class="uk-width-medium-4-10">
+                                            <label>Offers<span style="color:red;">*</span></label>   
+                                        </div>
+                                        <div class="uk-width-medium-6-10">
+                                            <div class="uk-grid" data-uk-grid-margin>
+
+                                                <div class="uk-width-large-1-2 uk-width-1-1">
+
+
+
+<div class="uk-input-group">
+        <label for="uk_dp_end" >Start Date</label>
+        <input class="md-input req ng-pristine ng-valid" id="uk_dp_start" data-uk-datepicker="{format:'DD-MM-YYYY'}" type="text">
+       
+      </div>
+
+
+
+
+                                                    <!-- <div class="uk-input-group">
+                                                        <span class="uk-input-group-addon"><i class="uk-input-group-icon uk-icon-calendar"></i></span>
+                                                        <label for="uk_dp_start">Start Date</label>
+                                                        <span style="color:red;">*</span></label>
+                                                        <input class="md-input valu" data-uk-datepicker="{format:'DD-MM-YYYY'}" id="uk_dp_start" type="text"  >
+                                                    </div> -->
+
+
+                                                </div>
+
+                                                <div class="uk-width-large-1-2 uk-width-medium-1-1">
+
+
+
+<div class="uk-input-group">
+        <label for="uk_dp_end" >End Date</label>
+        <input class="md-input req ng-pristine ng-valid" id="uk_dp_end" data-uk-datepicker="{format:'DD-MM-YYYY'}" type="text">
+       
+      </div>
+
+                                                    <!-- <div class="uk-input-group"><span class="uk-input-group-addon"><i class="uk-input-group-icon uk-icon-calendar"></i></span>
+                                                        <label for="uk_dp_end">End Date</label>
+                                                        <span style="color:red;">*</span></label>
+                                                        <input class="md-input valu" data-uk-datepicker="{format:'DD-MM-YYYY'}"  type="text" id="uk_dp_end" >
+                                                    </div> -->
+
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+<!-- <div class="uk-grid" data-uk-grid-margin> 
+<div class="uk-width-large-1-3 uk-width-1-1"> 
+<div class="uk-input-group"> 
+<span class="uk-input-group-addon"><i class="uk-input-group-icon uk-icon-calendar"></i></span> <label for="uk_dp_start">Start Date</label> 
+<input class="md-input" type="text" id="uk_dp_start"> 
+</div>
+</div>
+<div class="uk-width-large-1-3 uk-width-medium-1-1"> <div class="uk-input-group"> <span class="uk-input-group-addon"><i class="uk-input-group-icon uk-icon-calendar"></i></span> <label for="uk_dp_end">End Date</label> <input class="md-input" type="text" id="uk_dp_end"> </div> </div> </div> -->
+
+
+<div class="uk-grid" data-uk-grid-margin>
+    <div class="uk-width-medium-4-10">
+        <label>Price<span style="color:red;">*</span></label>    
+    </div>
+    <div class="uk-width-medium-6-10">
+        <div class="uk-grid" data-uk-grid-margin>
+            <div class="uk-width-large-1-2 uk-width-1-1">
+                <div class="uk-input-group">
+                    <label>Enter Price<span style="color:red;">*</span></label>
+                    <input class="md-input valu" onkeypress='return event.charCode >= 48 && event.charCode <= 57' ng-model="price" type="text">
+                </div>
+            </div>
+            <div class="uk-width-large-1-2">
+                <div class="uk-input-group  uk-width-large-1-1">
+                    <select class="md-input valu country">
+                        <option>Select Currency<span style="color:red;">*</span></option>
+                        <option value="AED">AED</option>
+                        <option value="USD">USD</option>
+                        <option value="Pounds">Pounds</option>
+                        <option value="YEN">YEN</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="uk-grid" data-uk-grid-margin>
+
+    <div class="uk-width-medium-10-10">
+        <div class="uk-grid" data-uk-grid-margin>
+            <div class="uk-width-large-4-10 uk-width-1-1">
+                <div class="uk-input-group">
+
+                    <label>Contact Person<span style="color:red;">*</span></label>
+                    <input type="text" maxlength="15"  ng-model="person" class="md-input valu">
+
+
+                </div>
+            </div>
+            <div class="uk-width-large-6-10 uk-width-medium-1-1">
+                <div class="uk-input-group">
+                    <label>Contact Mobile<span style="color:red;">*</span></label>
+                    <!-- <input type="tel" maxlength="13" id="phone" ng-model="contact" class="md-input valu"> -->
+                    <input type="text" maxlength="13" id="phone" ng-model="contact" class="md-input valu"onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="uk-grid" data-uk-grid-margin>   
+    <div class="uk-width-medium-1-1">
+       <!--  <label>Location<span style="color:red;">*</span></label> -->
+        <input type="text"  ng-model="address" id="address"  class="md-input valu uk-input-filled" /><br/>
+        <input type="hidden" id="lat" ng-model="lat">
+        <input type="hidden" id="lng"  ng-model="lng">
+        <div class="uk-width-medium-1-1" id="mapCanvas"></div>
+
+    </div>
+</div>
+
+
+
+<div class="uk-grid uk-margin-medium-top" data-uk-grid-margin>
+    <div class="uk-width-medium-4-10">
+        <button class="md-btn md-btn-success" ng-click="load()">Preview</button>
+    </div>
+    <div class="uk-width-medium-6-10">
+
+    </div>
+</div>
+
+
+
+</div>
+
+<div class="uk-width-1-2 ">
+
+    <div class="md-card-content uk-padding-remove">
+        <label class="uk-margin-small-bottom">
+            Upload image
+        </label>
+        <input type="file" id="input-file-a" class="dropify" 
+        image-model="myFile" accept="image/*" onchange="uploader()" type="file" ng-model="image" />
+    </div>
+
+    <div class="uk-margin-bottom"></div>
+     <label class="uk-margin-small-bottom">
+            Advertisement Content
+        </label>
+    <textarea id="wysiwyg_tinymce"  cols="30" rows="20"></textarea>
+    <div class="valu"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</li>
+
+</ul>
+</div>
+</div>
+
+
+</div>
+
+</div>
+</div>
+<script type="text/javascript">
+
+
+
+function initMap() {
+
+  var map = new google.maps.Map(document.getElementById('mapCanvas'), {
+    center: {
+      lat: -33.8688,
+      lng: 151.2195
+    },
+    zoom: 13
+  });
+  var input =(document.getElementById('address'));
+
+  
+
+  var autocomplete = new google.maps.places.Autocomplete(input);
+  autocomplete.bindTo('bounds', map);
+
+  var infowindow = new google.maps.InfoWindow();
+  var geocoder = new google.maps.Geocoder;
+  var marker = new google.maps.Marker({
+    map: map,
+    //anchorPoint: new google.maps.Point(0, -29),
+    draggable: true
+  });
+
+ 
+
+    autocomplete.addListener('place_changed', function() {
+    infowindow.close();
+    marker.setVisible(false);
+    var place = autocomplete.getPlace();
+    console.log(place);
+    if (!place.geometry) 
+    {
+      UIkit.modal.alert("Autocomplete's returned place contains no geometry");
+      //return;
+    }
+
+    // If the place has a geometry, then present it on a map.
+    if (place.geometry.viewport) 
+    {
+         map.fitBounds(place.geometry.viewport);
+    } else 
+    {
+          map.setCenter(place.geometry.location);
+          map.setZoom(17); // Why 17? Because it looks good.
+    }
+    /*marker.setIcon(({
+      url: place.icon,
+      size: new google.maps.Size(71, 71),
+      origin: new google.maps.Point(0, 0),
+      anchor: new google.maps.Point(17, 34),
+      scaledSize: new google.maps.Size(35, 35)
+    }));*/
+
+    marker.setPosition(place.geometry.location);
+    $('#lat').val(place.geometry.location.lat());
+    $('#lng').val(place.geometry.location.lng());
+    marker.setVisible(true);
+
+
+   
+
+google.maps.event.addListener(marker, 'dragend', function(e) 
+{
+    $('#lat').val(e.latLng.lat());
+    $('#lng').val(e.latLng.lng());
+    //marker.setAnimation(google.maps.Animation.BOUNCE);
+    getAddressPlace(e.latLng.lat(),e.latLng.lng());
+
+});
+
+google.maps.event.addListener(map, 'click', function(e) {
+
+    marker.setVisible(true);
+    marker.setPosition(e.latLng);
+/* if (marker.getAnimation() !== null) 
+{
+    marker.setAnimation(null);
+  } else 
+  {
+    marker.setAnimation(google.maps.Animation.BOUNCE);
+  }*/
+});
+
+
+
+
+    var address = '';
+    if (place.address_components) {
+      address = [
+        (place.address_components[0] && place.address_components[0].short_name || ''),
+        (place.address_components[1] && place.address_components[1].short_name || ''),
+        (place.address_components[2] && place.address_components[2].short_name || '')
+      ].join(' ');
+    }
+
+    infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+    infowindow.open(map, marker);
+  });
+
+ 
+autocomplete.setTypes([]);
+    function getAddressPlace(lat,lng)
+    {
+      
+    var location  = new google.maps.LatLng(parseFloat(lat), parseFloat(lng));    // turn coordinates into an object          
+    geocoder.geocode({'latLng': location}, function (results, status) {
+    if(status == google.maps.GeocoderStatus.OK) {           // if geocode success
+    var add=results[0].formatted_address; 
+    console.log(results[0].formatted_address); 
+    $("#address").val(add);
+    infowindow.setContent('<div><strong>' + add + '</strong><br>');
+    infowindow.open(map, marker);
+
+        }
+    });
+}
+}
+
+initMap();
+
+
+
+
+
+/*$(document).ready(function () {
+    initializeLocation();
+    //$('#address').removeAttr('placeholder');
+});
+
+
+
+var placeSearch, autocomplete;
+
+var geocoder = new google.maps.Geocoder();
+
+function geocodePosition(pos) {
+
+    geocoder.geocode({
+        latLng: pos
+    }, function(responses) {
+
+        if (responses && responses.length > 0) {
+           
+           
+           console.log(responses);
+          
+            updateMarkerAddress(responses[0].formatted_address);
+       }
+    });
+}
+function updateMarkerPosition(latLng) 
+{
+
+}
+
+function updateMarkerAddress(str) {
+    $("#address").val(str);
+
+}
+
+function initializeLocation() {
+
+    autocomplete = new google.maps.places.Autocomplete(
+                                                       (document.getElementById('address')),
+                                                       { types: ['geocode'] });
+    google.maps.event.addListener(autocomplete, 'place_changed', function () {
+        lat = autocomplete.getPlace().geometry.location.lat();
+        lng = autocomplete.getPlace().geometry.location.lng();
+
+        getAddressPlace(0,0);
+    });
+}
+
+function getAddressPlace(l=0,n=0) {
+
+    $('#mapCanvas').fadeIn();
+    if(l == 0)
+    {
+        lat = autocomplete.getPlace().geometry.location.lat();
+    lng = autocomplete.getPlace().geometry.location.lng();
+    $('#lat').val(lat);
+    $('#lng').val(lng); 
+    }
+    else
+    {
+    lat = l;
+    lng = n
+    $('#lat').val(l);
+    $('#lng').val(n);
+    }
+   
+
+    var myLatlng = new google.maps.LatLng(lat, lng);
+    var mapOptions = {
+        zoom: 16,
+        center: myLatlng
+    }
+    var map = new google.maps.Map(document.getElementById('mapCanvas'), mapOptions);
+    var marker = new google.maps.Marker({
+        position: myLatlng,
+        map: map,
+        draggable: true
+    });
+     updateMarkerPosition(myLatlng);
+if(l != 0)
+    {
+    geocodePosition(myLatlng);
+    }
+   
+    // geocodePosition(myLatlng);
+
+// Add dragging event listeners.
+google.maps.event.addListener(marker, 'dragstart', function() {
+
+});
+
+google.maps.event.addListener(marker, 'drag', function() 
+{
+
+    updateMarkerPosition(marker.getPosition());
+});
+
+google.maps.event.addListener(marker, 'dragend', function(e) {
+    $('#lat').val(e.latLng.lat());
+    $('#lng').val(e.latLng.lng());
+    getAddressPlace(e.latLng.lat(),e.latLng.lng());
+    // geocodePosition(marker.getPosition());
+});
+
+google.maps.event.addListener(map, 'click', function(e) {
+    updateMarkerPosition(e.latLng);
+    geocodePosition(marker.getPosition());
+    marker.setPosition(e.latLng);
+});
+
+}*/
+
+
+
+
+</script>
+<footer id="footer">
+    &copy; 2017 <a href="#">Aseema</a>, All rights reserved.
+</footer>
+
+
+
+
+
+
+<script src="https://s3.eu-central-1.amazonaws.com/s3-aseema-web/asset/assets/js/common.min.js"></script>
+<!-- uikit functions -->
+<script src="https://s3.eu-central-1.amazonaws.com/s3-aseema-web/asset/assets/js/uikit_custom.min.js"></script> 
+<!-- altair common functions/helpers --> 
+<script src="https://s3.eu-central-1.amazonaws.com/s3-aseema-web/asset/assets/js/altair_admin_common.min.js"></script> <!-- page specific plugins --> <!-- page specific plugins --> <!-- ckeditor --> 
+<script src="https://s3.eu-central-1.amazonaws.com/s3-aseema-web/asset/bower_components/ckeditor/ckeditor.js"></script> 
+<script src="https://s3.eu-central-1.amazonaws.com/s3-aseema-web/asset/bower_components/ckeditor/adapters/jquery.js">
+</script> <!-- wysiwyg editors functions --> 
+<script src="https://s3.eu-central-1.amazonaws.com/s3-aseema-web/asset/bower_components/tinymce/tinymce.js"></script> 
+<script src="https://s3.eu-central-1.amazonaws.com/s3-aseema-web/asset/assets/js/pages/forms_wysiwyg.js"></script>

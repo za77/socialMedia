@@ -1,0 +1,267 @@
+    
+<style>
+#upload-demo-i
+{
+  display:none;
+}
+</style>
+
+  <div id="page_content" >
+            <div id="page_content_inner">
+
+      <div ng-controller="funController" >
+     
+        
+         <div class="md-card-content uk-margin-large-top">
+         <form enctype="multipart/form-data">
+            <h3 class="heading_a ">Create new Competes</h3>
+              <div class="md-card uk-margin-top">
+                <div class="md-card-content">
+                    <div class="uk-form-row uk-margin-top">
+                      <div class="uk-grid" data-uk-grid-margin="">
+                        <div class="uk-width-medium-1-2 uk-row-first">
+    
+                   <div class="uk-form-row">
+                      <div class="uk-grid" data-uk-grid-margin="">
+                         <div class="uk-width-medium-1-1 uk-row-first">
+    
+                            <div class="md-input-wrapper md-input-filled"><label>Competes Name</label>
+                            <input class="md-input req" type="text" ng-model="cname">
+                            <span class="md-input-bar "></span>
+                            </div>
+                         </div>
+                         
+                         
+                      </div>
+                   </div>
+                   <div class="uk-form-row uk-margin-large-top">
+                      <div class="uk-grid" data-uk-grid-margin="">
+                         <div class="uk-width-medium-1-2 uk-row-first">
+                         <!--    <div class="md-input-wrapper"><label for="uk_dp_1">Select date</label><input  class="md-input"  type="date" ng-model="sdate" ><span class="md-input-bar " ></span></div> -->
+    
+                                <div class="md-input-wrapper md-input-filled">
+                                  <label for="uk_dp_1">Select date</label>
+                                <input class="md-input req" id="uk_dp_1" data-uk-datepicker="{format:'DD-MM-YYYY'}" type="text" ng-model="sdate">
+                                <span class="md-input-bar "></span></div>
+    
+                         </div>
+                         <div class="uk-width-medium-1-2">
+                      <!--       <div class="md-input-wrapper"><label for="uk_dp_2">End date</label><input class="md-input"  type="date" ng-model="edate"><span class="md-input-bar "></span></div> -->
+    
+    
+                            <div class="md-input-wrapper md-input-filled"><label for="uk_dp_2">End date</label>
+                            <input class="md-input req" id="uk_dp_2" data-uk-datepicker="{format:'DD-MM-YYYY'}" type="text" ng-model="edate">
+                            <span class="md-input-bar "></span></div>
+                                </div>
+                         </div>
+                      </div>
+                      
+                      <div class="uk-form-row uk-margin-large-top">
+                  <div class="uk-grid" data-uk-grid-margin>
+                     <div class="uk-width-large-1-1">
+                        <label>Choose teams</label>
+                        <!-- <select id="selec_adv_1" class="req"  multiple="true">
+                               qwert this data Came From forms_advaned.min.js  
+                        </select> -->
+               
+                          <!-- <multiselect  id="team" class="input-xlarge" multiple="true"
+                          ng-model="selectedCar"
+                          options="c.teamId for c in multiSelectData"
+                          change="selected()" ></multiselect> -->
+
+                          <!-- <multiselect  id="team" class="input-xlarge" multiple="true"
+                          ng-model="selectedCar"
+                          ng-repeat="user in multiSelectData"
+                          change="selected()" >{{user.teamId}}</multiselect> -->
+                          
+                          <select id="selec_adv_1" name="selec_adv_1" multiple>
+                                                                
+                          </select>
+                     </div>
+                  </div>
+               </div>
+               
+               
+         <div class="md-input-wrapper md-input-filled uk-margin-top"><label>Description</label>
+                        <textarea  maxlength="500" class="md-input req"  ng-model="desc" rows="5" id="desc"></textarea>
+                        <span class="md-input-bar "></span></div>
+        <div id="textarea_feedback2" ></div>
+               
+               
+               <div class="uk-form-row uk-margin-large-top uk-margin-large-bottom">
+                  <a class="md-btn md-btn-primary md-btn-wave-light waves-effect waves-button waves-light"
+                   ng-click="createChallenge(0)"
+                  id="chal">Preview</a>
+               </div>
+              
+                   </div>
+                   <div class="uk-width-medium-1-2">
+                      <div class="uk-grid">
+        <div class="uk-width-1-2 text-center">
+
+         <!-- <div class="uk-width-large-1-1 text-center"> -->
+                   <label>Choose Competes Logo</label>
+                   </br>
+                      <span class="uk-form-file md-btn uk-margin-top uk-margin-bottom text-center hideShow">choose file<input id="upload"  type="file" accept="image/* " 
+        ></span>
+      <span style="margin-left:10px;" ng-show="myvar"></span> 
+        <button class="btn btn-primary upload-result text-center" style="display:none;" id="hideSeek">Crop Image</button>
+
+     
+      <!-- </div> -->
+        <div id="upload-demo" class="text-center" style="width:150px"></div>
+                 <div id="upload-demo-i" style="background:#e1e1e1;width:180px;padding:30px;height:180px;margin-top:30px"></div>
+      <!--    <div class="uk-width-1-2" style="padding-top:30px;"> -->
+       
+   
+    <!--     </div> -->
+        </div>
+       
+
+        <!-- <div class="uk-width-1-3" style="">
+        <div id="upload-demo-i" style="background:#e1e1e1;width:180px;padding:30px;height:180px;margin-top:30px"></div>
+        </div> -->
+      </div>
+
+                        <div class="md-input-wrapper md-input-filled uk-margin-top"><label>Rules</label>
+                        <textarea class="md-input req"  ng-model="rules" rows="5" id="rules" maxlength="400"></textarea>
+                        <span class="md-input-bar "></span></div>
+                        <div id="textarea_feedback1"></div>
+                           <a class="md-fab md-fab-primary uk-float-right" data-uk-tooltip="{cls:'uk-tooltip-small',pos:'left'}" title="Back" ng-click=back()><i class="material-icons">keyboard_backspace</i></a>
+                     </div>
+                   
+                  
+                 </div>
+              </div>
+        
+               
+               
+                </div>
+              </div>
+            </div>
+            </form>
+
+            
+
+
+          
+
+
+
+
+                                    <div class="uk-modal" id="modal_default7" aria-hidden="true" style="display: none; overflow-y: scroll;">
+                                        <div class="uk-modal-dialog" style="top: 233.5px;">
+                                            <button type="button" class="uk-modal-close uk-close"></button>                                   
+                                            <input type="hidden" ng-model="empid" class="ng-pristine ng-valid">
+                                            <div class="uk-form-row">
+                                                You have not selected an image for compete. Would you like to proceed without an image?
+                                                <div class="uk-width-1-1 uk-margin-top">
+                                                    
+                                                    <button type="button"  class="md-btn md-btn-danger uk-modal-close">NO</button>
+
+                                                    <button ng-click="createChallenge(1)" class="md-btn md-btn-primary md-btn-wave-light waves-effect waves-button waves-light uk-modal-close"
+                                                     >YES</button>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+         </div>
+      </div>
+   </div>
+   <footer id="footer">
+  &copy; 2017 <a href="#">Aseema</a>, All rights reserved.
+</footer>
+
+
+
+            </div></div> <script src="https://s3.eu-central-1.amazonaws.com/s3-aseema-web/asset/assets/js/altair_admin_common.min.js"></script>
+<script src="https://s3.eu-central-1.amazonaws.com/s3-aseema-web/asset/bower_components/ion.rangeslider/js/ion.rangeSlider.min.js"></script>
+ <script src="https://s3.eu-central-1.amazonaws.com/s3-aseema-web/asset/assets/js/pages/forms_advanced.min.js"></script>
+
+
+
+ <script type="text/javascript">
+
+
+ 
+
+$.ajaxSetup({
+headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+}
+});
+</script>
+ 
+  <script src="./public/croppie.js"></script>
+  <link rel="stylesheet" href="./public/styles.css">
+  <link rel="stylesheet" href="./public/croppie.css">
+  <script>
+$("#hideSeek").hide();
+    // $("#upload-demo-i").css({
+    //                  "display":"block"
+                  
+    //             });
+  $(".cr-slider").hide();
+$uploadCrop = $('#upload-demo').croppie({
+    enableExif: true,
+    viewport: {
+        width: 570,
+        height: 370,
+        type: 'square'
+    },
+    boundary: {
+        width: 575,
+        height: 375
+    }
+});
+
+$('#upload').on('change', function () 
+{ 
+
+
+  var reader = new FileReader();
+    reader.onload = function (e) {
+      $uploadCrop.croppie('bind', {
+        url: e.target.result
+      }).then(function(){
+        console.log('jQuery bind complete');
+      });
+    }
+    reader.readAsDataURL(this.files[0]);
+    $("#hideSeek").hide();
+
+});
+
+$('.upload-result').on('click', function (ev) {
+    
+  $uploadCrop.croppie('result', {
+    type: 'canvas',
+    size: 'viewport'
+  }).then(function (resp) { 
+    $("#hideSeek").hide();
+    // $.ajax({
+    //   url: "https://beta1.aseemahealth.com/api/image-crop",
+    //   type: "POST",
+    //   data: {"image":resp},
+    //   success: function (data) {
+      localStorage.removeItem('crop');
+        html = '<img src="' + resp + '" />';
+        $("#upload-demo-i").html(html);
+        localStorage.setItem('crop',resp);
+
+        $('#upload-demo').css({
+                     "display":"none"
+                  
+                });
+      $("#upload-demo-i").css({
+                     "display":"block"               
+                });
+    //   }
+    // });
+  });
+});
+
+</script>
